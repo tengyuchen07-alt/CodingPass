@@ -28,8 +28,6 @@ int main()
 // provided that both a and b are positive even integers, and a <= b
 int evenSum(int a, int b)
 {
-    int sum = 0;
-    for (int i = a; i <= b; i += 2)
-        sum += i;
-    return sum;
+    if (a > b)return 0;
+    return a + evenSum(a + 2, b);
 }
