@@ -70,7 +70,7 @@ void multiplication(long long int multiplicandCoef[], long long int multiplicand
             resultCoef[resultSize] = multiplicandCoef[i] * multiplierCoef[j];
             resultExpon[resultSize] = multiplicandExpon[i] + multiplierExpon[j];
             resultSize++;
-        }
+        }//被乘數的第i項和乘數相乘的結果進addition
         addition(productCoef, productExpon, productSize,resultCoef, resultExpon, resultSize );
     }
 }
