@@ -86,13 +86,13 @@ void addition(long long int addendCoef[], long long int addendExpon[], int& adde
                 addendCoef[j] += adderCoef[i];
                 merged = true;
                 break;
-            }
+            }加數第i項找到和被加數同次項，找到即可跳出迴圈
         }
         if (!merged) {
             addendCoef[addendSize] = adderCoef[i];
             addendExpon[addendSize] = adderExpon[i];
             addendSize++;
-        }
+        }//都沒有同次項的：加數直接放進被加數
     }
     int newSize = 0;
     for (int i = 0; i < addendSize; ++i) {
@@ -101,7 +101,7 @@ void addition(long long int addendCoef[], long long int addendExpon[], int& adde
             addendExpon[newSize] = addendExpon[i];
             newSize++;
         }
-    }
+    }//檢查係數為0的次項，刪除
     addendSize = newSize;
     for (int i = 0; i < addendSize - 1; ++i) {
         for (int j = i + 1; j < addendSize; ++j) {
@@ -110,7 +110,7 @@ void addition(long long int addendCoef[], long long int addendExpon[], int& adde
                 std::swap(addendCoef[i], addendCoef[j]);
             }
         }
-    }
+    }//排列被加數的次項順序
 }
 
 // returns true if and only if the specified polynomial is the zero polynomial
