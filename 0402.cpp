@@ -86,7 +86,7 @@ void addition(long long int addendCoef[], long long int addendExpon[], int& adde
                 addendCoef[j] += adderCoef[i];
                 merged = true;
                 break;
-            }加數第i項找到和被加數同次項，找到即可跳出迴圈
+            }//加數第i項找到和被加數同次項，找到即可跳出迴圈
         }
         if (!merged) {
             addendCoef[addendSize] = adderCoef[i];
