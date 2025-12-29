@@ -110,9 +110,9 @@ void createTextFile(fstream& readFromFile)
 {
     StudentData stu;
     ofstream out("grade.txt");
-    readFromFile.clear(); 
+    readFromFile.clear();
     readFromFile.seekg(0, ios::beg);
-    
+
     cout << endl;
     cout << left << setw(9) << "ID";
     cout << left << setw(12) << "Last Name";
@@ -152,11 +152,16 @@ void updateRecord(fstream& updateFile)
             found = true;
             if (stu.grade == -1) {
                 cout << endl;
-                cout << "Student ID " ;
+                cout << "Student ID ";
                 cout << stu.studentId;
-                cout<<" has no grade." << endl;
+                cout << " has no grade." << endl;
             }
             else {
+                cout << endl;
+                cout << left << setw(9) << stu.studentId;
+                cout << left << setw(12) << stu.lastName;
+                cout << left << setw(13) << stu.firstName;
+                cout << right << setw(5) << stu.grade << endl<<endl;
                 cout << "Enter grade: ";
                 int grade;
                 cin >> grade;
@@ -189,10 +194,10 @@ void newRecord(fstream& insertInFile)
     bool found = false;
     insertInFile.clear();
     insertInFile.seekg(0, ios::beg);
-    while (insertInFile.read((char*)&stu,sizeof(StudentData))) {
+    while (insertInFile.read((char*)&stu, sizeof(StudentData))) {
         if (!strcmp(stu.studentId, studentId)) {
             found = true;
-            cout << "Enter grade: ";
+            cout << "\nEnter grade: ";
             int grade;
             cin >> grade;
             stu.grade = grade;
@@ -203,7 +208,6 @@ void newRecord(fstream& insertInFile)
             cout << left << setw(12) << stu.lastName;
             cout << left << setw(13) << stu.firstName;
             cout << right << setw(5) << stu.grade << endl;
-            cout << endl;
             break;
         }
     }
@@ -221,7 +225,7 @@ void deleteRecord(fstream& deleteFromFile)
     char studentId[8];
     getID("\nEnter student ID to delete", studentId);
 
-    ofstream temp("temp.dat",ios::out| ios::binary);
+    ofstream temp("temp.dat", ios::out | ios::binary);
     StudentData stu;
     bool found = false;
     deleteFromFile.clear();
@@ -235,7 +239,7 @@ void deleteRecord(fstream& deleteFromFile)
             cout << endl;
             cout << "Student ID ";
             cout << studentId;
-            cout << " is empty." << endl;
+            cout << " deleted." << endl;
         }
     }
     deleteFromFile.close();
@@ -255,7 +259,7 @@ void deleteRecord(fstream& deleteFromFile)
         cout << " is empty." << endl;
         remove("temp.dat");
     }
-    deleteFromFile.open("grades.dat",ios::in|ios::out|ios::binary);
+    deleteFromFile.open("grades.dat", ios::in | ios::out | ios::binary);
 }
 
 // obtain student ID from user
@@ -264,7 +268,7 @@ void getID(const char* const prompt, char studentId[])
     do
     {
         cout << prompt << " ( 1141401 - 1141450 ): ";
-        cin.getline(studentId, 20);
-        /*cin >> studentId;*/
+        /*cin.getline(studentId, 20);*/
+        cin >> studentId;
     } while (strcmp(studentId, "1141401") == -1 || strcmp(studentId, "1141450") == 1);
 }
